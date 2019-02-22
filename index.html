@@ -17,13 +17,13 @@
         <script src="https://terra-shader.glitch.me/js/terra-shader.js"></script>
 
 
-        <script src="/lib/html2canvas.min.js"></script>
+        <script src="lib/html2canvas.min.js"></script>
 
 
         <!-- this includes our restart-button component from the restart-button
         file -->
-        <script src="/restart-button.js"></script>
-        <script src="/webpage.js"></script>
+        <script src="restart-button.js"></script>
+        <script src="webpage.js"></script>
 
 
     </head>
@@ -32,7 +32,7 @@
         <a-scene>
 
           
-            <a-plane color="#CCC" height="20" width="20" material="shader: html; target: #htmlElement"></a-plane>
+            <a-plane material="shader: html; target: #htmlElement; ratio: height; transparent: true; side: double; fps: .2" width=20 height=20 position="0 0 0"></a-plane>
 
 
 <!--             <a-mixin id="rotation" animation="property: rotation; loop: true; from:  0 0 0; to: 0 360 0; dur: 20000; easing: linear;"></a-mixin>
@@ -95,7 +95,10 @@
         </a-scene>
       
         <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden">
-          <div id="webpage"></div>
+            <div id="htmlElement" >
+                <!-- style="background: linear-gradient(red, yellow, green); width: 500px; height: 200px; font-size: 64px; padding-top: 15px; color: #222; font-weight: 600; display: flex; align-items: center; text-align: center; border-radius: 200px"> -->
+            <!-- <p style="border: 1px #FFF">ARE YOU HUNGRY?</p> -->
+              </div>
         </div>
 
 

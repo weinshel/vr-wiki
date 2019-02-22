@@ -2,9 +2,11 @@ async function getPage () {
   
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
-    console.log(this.responseXML.title);
+      const el = document.getElementById('htmlElement')
+      const content = this.responseXML.getElementsByTagName('pre')[0]
+      el.appendChild(content)
   }
-  xhr.open("GET", "https://html.brow.sh/https://en.wikipedia.org/wiki/Internet");
+  xhr.open("GET", "/https://en.wikipedia.org/wiki/Internet");
   xhr.responseType = "document";
   xhr.send();  
 }
