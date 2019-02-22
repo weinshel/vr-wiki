@@ -1,37 +1,108 @@
-
-
 <html>
-  <head>
-    <script src="lib/aframe.min.js"></script>
 
-    <script src="https://unpkg.com/aframe-teleport-controls@0.2.x/dist/aframe-teleport-controls.min.js"></script>
+    <head>
+        <title>web explorer</title>
+        <meta name="description" content="Build your own planetarium with A-frame">
+        <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-html-shader@0.2.0/dist/aframe-html-shader.min.js"></script>
+        <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
+        <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
 
-    <script src="index.js"></script>
-    <script src="components/random-color.js"></script>
-    
-  </head>
-  <body>
-   <!-- Try changing the preset to one of default, contact, egypt, checkerboard, forest, goaland, yavapai, goldmine, 
-         threetowers, poison, arches, tron, japan, dream, volcano, starry, osiris. -->
-    <!-- See more environment options: https://github.com/feiss/aframe-environment-component#parameters -->
-    <a-scene environment="preset: volcano">
-      <a-assets>
-        <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
-        <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg">
-      </a-assets>
+        <!-- Custom shaders for cool textures -->
+        <script src="https://star-shader.glitch.me/js/star-shader.js"></script>
+        <script src="https://gas-giant-shader.glitch.me/js/gas-giant-shader.js"></script>
+        <script src="https://rocky-planet-shader.glitch.me/js/rocky-planet-shader.js"></script>
+        <script src="https://gradient-planet-shader.glitch.me/js/gradient-planet-shader.js"></script>
+        <script src="https://metallic-planet-shader.glitch.me/js/metallic-planet-shader.js"></script>
+        <script src="https://terra-shader.glitch.me/js/terra-shader.js"></script>
 
-      <a-entity id="blockHand" hand-controls="right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity>
+
+        <script src="/lib/html2canvas.min.js"></script>
+
+
+        <!-- this includes our restart-button component from the restart-button
+        file -->
+        <script src="/restart-button.js"></script>
+        <script src="/webpage.js"></script>
+
+
+    </head>
+
+    <body>
+        <a-scene>
+
+          
+            <a-plane color="#CCC" height="20" width="20" material="shader: html; target: #htmlElement"></a-plane>
+
+
+<!--             <a-mixin id="rotation" animation="property: rotation; loop: true; from:  0 0 0; to: 0 360 0; dur: 20000; easing: linear;"></a-mixin>
+            <a-mixin id="orbit" animation="property: rotation; loop: true; to: 0 360 0; dur: 40000; easing: linear; pauseEvents: pauseOrbit; resumeEvents: startOrbit"></a-mixin> -->
+
+            <!-- adding a cursor for look controls-->
+
+            <a-entity position="-5 0 20">
+                <a-camera camera>
+                    <a-cursor material="color: #ff40ff;"></a-cursor>
+                </a-camera>
+            </a-entity>
+
+          
+<!--             <a-plane color="#CCC" height="20" width="20" webpage></a-plane> -->
+
+
+<!--             <a-entity restart-button position="0 -12 0" geometry="primitive: plane; width: 10; height: auto" material="color: #4628EB;"
+                text="zOffset: .005; wrapCount: 25; align: center; value: \n restart 
+              \n ">
+            </a-entity>
+ -->
+
+            <a-sky color="black"></a-sky>
+            <a-entity star-system="count: 100; radius: 500; depth: 2; texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2Fstar.svg?1541105053938;"></a-entity>
+
+            <!-- some planets made with shaders, a gas giant and a metallic
+            planet-->
+            <!-- also give the orbits the same class, orbits, so we can control
+            them with javascipt -->
+<!--             <a-entity id="orbit-gas-giant" mixin="orbit" animation="dur: 90000;" class="orbits">
+                <a-sphere id="gas-giant" position="0 0 30" radius="2.5" mixin="rotation" gas-giant-shader></a-sphere>
+            </a-entity>
+
+            <a-entity id="orbit-metallic" mixin="orbit" class="orbits">
+                <a-sphere id="metallic-planet" position="0 0 15" radius="1" metallic-planet-shader="volcanism: 0;"
+                    mixin="rotation"></a-sphere>
+            </a-entity>
+
+            <a-entity id="orbit-terra" mixin="orbit" class="orbits">
+                <a-sphere id="terra" position="0 0 21" radius="1.75" terra-shader mixin="rotation"></a-sphere>
+            </a-entity> -->
+
+            <!--here is a rocky planet with a 2 moons -->
+<!--             <a-entity id="orbit-rocky" mixin="orbit" animation="dur: 30000;" class="orbits">
+                <a-entity id="rocky-and-moon" position="0 0 10.5">
+                    <a-entity id="rocky-container">
+                        <a-sphere position="0 0 0" radius=".75" id="rocky-planet" mixin="rotation"
+                            gradient-planet-shader="texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2FGeneric_Celestia_asteroid_texture.jpg?1541189998715"></a-sphere>
+                        <a-entity id="moon-container" mixin="orbit">
+                            <a-sphere position="-1 0 0 0" radius=".1" id="moon1" gradient-planet-shader="texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2FGeneric_Celestia_asteroid_texture.jpg?1541189998715"></a-sphere>
+                        </a-entity>
+                        <a-entity id="moon2-container" mixin="orbit" animation="dur: 30000;" class="orbits">
+                            <a-sphere position="-2 0 0 0" radius=".2" id="moon2" gradient-planet-shader="texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2FGeneric_Celestia_asteroid_texture.jpg?1541189998715"></a-sphere>
+                        </a-entity>
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+ -->
+        </a-scene>
       
-      <!-- Box with random color. -->
-      <a-entity 
-        geometry="primitive: box; depth: 1; height: 1; width 1"
-        material="shader: standard"
-        position="0 0.5 -2"
-        random-color></a-entity>
-    
-      <a-cylinder id="ground" src="#groundTexture" radius="32" height="0.1"></a-cylinder>
+        <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden">
+          <div id="webpage"></div>
+        </div>
 
-      <a-sky id="background" src="#skyTexture" theta-length="90" radius="30"></a-sky>
-    </a-scene>
-  </body>
+
+        <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+        <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+        <script src="https://button.glitch.me/button.js"></script>
+    </body>
+
 </html>
