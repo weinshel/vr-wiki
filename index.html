@@ -9,12 +9,12 @@
         <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
 
         <!-- Custom shaders for cool textures -->
-        <script src="https://star-shader.glitch.me/js/star-shader.js"></script>
-        <script src="https://gas-giant-shader.glitch.me/js/gas-giant-shader.js"></script>
-        <script src="https://rocky-planet-shader.glitch.me/js/rocky-planet-shader.js"></script>
-        <script src="https://gradient-planet-shader.glitch.me/js/gradient-planet-shader.js"></script>
-        <script src="https://metallic-planet-shader.glitch.me/js/metallic-planet-shader.js"></script>
-        <script src="https://terra-shader.glitch.me/js/terra-shader.js"></script>
+        <!-- <script src="https://star-shader.glitch.me/js/star-shader.js"></script> -->
+        <!-- <script src="https://gas-giant-shader.glitch.me/js/gas-giant-shader.js"></script> -->
+        <!-- <script src="https://rocky-planet-shader.glitch.me/js/rocky-planet-shader.js"></script> -->
+        <!-- <script src="https://gradient-planet-shader.glitch.me/js/gradient-planet-shader.js"></script> -->
+        <!-- <script src="https://metallic-planet-shader.glitch.me/js/metallic-planet-shader.js"></script> -->
+        <!-- <script src="https://terra-shader.glitch.me/js/terra-shader.js"></script> -->
 
 
         <script src="lib/html2canvas.min.js"></script>
@@ -30,9 +30,13 @@
 
     <body>
         <a-scene>
+            <a-assets>
+            </a-assets>
+
 
           
-            <a-plane material="shader: html; target: #htmlElement; ratio: height; transparent: true; side: double; fps: .2" width=20 height=20 position="0 0 0"></a-plane>
+            <a-plane webpage="url: https://en.wikipedia.org" material="shader: html; target: #htmlElement; ratio: height; transparent: true; side: double; fps: .2" width=20 height=20 position="0 0 0"></a-plane>
+            <!-- <a-box material="shader: html; target: #htmlElement; transparent: true; fps: .2" width=20 height=20 position="0 0 0"></a-box> -->
 
 
 <!--             <a-mixin id="rotation" animation="property: rotation; loop: true; from:  0 0 0; to: 0 360 0; dur: 20000; easing: linear;"></a-mixin>
@@ -42,7 +46,7 @@
 
             <a-entity position="-5 0 20">
                 <a-camera camera>
-                    <a-cursor material="color: #ff40ff;"></a-cursor>
+                    <a-cursor material="color: #8dd5e0;"></a-cursor>
                 </a-camera>
             </a-entity>
 
@@ -56,8 +60,11 @@
             </a-entity>
  -->
 
-            <a-sky color="black"></a-sky>
-            <a-entity star-system="count: 100; radius: 500; depth: 2; texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2Fstar.svg?1541105053938;"></a-entity>
+            <a-sky color="#131e30"></a-sky>
+            <a-entity star-system="count: 200; radius: 200; depth: 2; texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2Fstar.svg?1541105053938;"></a-entity>
+
+            <!-- ground -->
+            <a-cylinder id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" radius="32" height="0.1"></a-cylinder>
 
             <!-- some planets made with shaders, a gas giant and a metallic
             planet-->
@@ -94,7 +101,7 @@
  -->
         </a-scene>
       
-        <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden">
+        <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden; background: white">
             <div id="htmlElement" >
                 <!-- style="background: linear-gradient(red, yellow, green); width: 500px; height: 200px; font-size: 64px; padding-top: 15px; color: #222; font-weight: 600; display: flex; align-items: center; text-align: center; border-radius: 200px"> -->
             <!-- <p style="border: 1px #FFF">ARE YOU HUNGRY?</p> -->
