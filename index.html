@@ -7,6 +7,9 @@
         <script src="https://unpkg.com/aframe-html-shader@0.2.0/dist/aframe-html-shader.min.js"></script>
         <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
         <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
+          <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
+
+
 
         <!-- Custom shaders for cool textures -->
         <!-- <script src="https://star-shader.glitch.me/js/star-shader.js"></script> -->
@@ -22,7 +25,8 @@
 
         <!-- this includes our restart-button component from the restart-button
         file -->
-        <script src="restart-button.js"></script>
+        <script src="next-button.js"></script>
+        <script src="toggle-bg.js"></script>
         <script src="webpage.js"></script>
 
 
@@ -35,7 +39,7 @@
 
 
           
-            <a-plane webpage="url: https://en.wikipedia.org" material="shader: html; target: #htmlElement; ratio: height; transparent: true; side: double; fps: .2" width=20 height=20 position="0 0 0"></a-plane>
+            <a-plane class="webpage" webpage="url: https://en.wikipedia.org/" material="shader: html; target: #htmlElement; transparent: true; fps: 1" width=5 height=5 position="0 2 0"></a-plane>
             <!-- <a-box material="shader: html; target: #htmlElement; transparent: true; fps: .2" width=20 height=20 position="0 0 0"></a-box> -->
 
 
@@ -44,27 +48,40 @@
 
             <!-- adding a cursor for look controls-->
 
-            <a-entity position="-5 0 20">
-                <a-camera camera>
-                    <a-cursor material="color: #8dd5e0;"></a-cursor>
-                </a-camera>
+            <a-entity position="0 0 5">
+              <!-- <a-entity id="blockHand" hand-controls="right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity> -->
+
+              <a-camera>
+                <a-cursor intersection-spawn="event: click; mixin: voxel" material="color: #8dd5e0;"></a-cursor>
+              </a-camera>
+
+
             </a-entity>
 
           
 <!--             <a-plane color="#CCC" height="20" width="20" webpage></a-plane> -->
 
 
-<!--             <a-entity restart-button position="0 -12 0" geometry="primitive: plane; width: 10; height: auto" material="color: #4628EB;"
-                text="zOffset: .005; wrapCount: 25; align: center; value: \n restart 
+            <a-entity next-button position="4 2 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
+                text="zOffset: .005; wrapCount: 25; align: center; value: \n next 
               \n ">
             </a-entity>
- -->
+            <a-entity toggle-bg position="4 3 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
+                text="zOffset: .005; wrapCount: 25; align: center; value: \n toggle background 
+              \n ">
+            </a-entity>
+
 
             <a-sky color="#131e30"></a-sky>
             <a-entity star-system="count: 200; radius: 200; depth: 2; texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2Fstar.svg?1541105053938;"></a-entity>
 
             <!-- ground -->
             <a-cylinder id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" radius="32" height="0.1"></a-cylinder>
+
+          <a-entity position="4 1 0">
+            <a-entity log geometry="primitive: plane; width: 2; height: 1" material="color: #111" text="color: lightgreen" position="0 0 0"></a-entity>
+
+          </a-entity>
 
             <!-- some planets made with shaders, a gas giant and a metallic
             planet-->
@@ -101,8 +118,8 @@
  -->
         </a-scene>
       
-        <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden; background: white">
-            <div id="htmlElement" >
+        <div style="width: 900px; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden;">
+            <div id="htmlElement" style="background-color: #9cbaa2" >
                 <!-- style="background: linear-gradient(red, yellow, green); width: 500px; height: 200px; font-size: 64px; padding-top: 15px; color: #222; font-weight: 600; display: flex; align-items: center; text-align: center; border-radius: 200px"> -->
             <!-- <p style="border: 1px #FFF">ARE YOU HUNGRY?</p> -->
               </div>
