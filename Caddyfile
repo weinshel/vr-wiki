@@ -1,0 +1,11 @@
+avocado.weinshel.net/vr {
+
+}
+
+avocado.weinshel.net/http {
+    proxy / http://localhost:4333 {
+        transparent
+    }
+}
+
+
