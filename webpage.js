@@ -34,7 +34,7 @@ AFRAME.registerComponent('webpage', {
         }
         el.appendChild(content)
     }
-    xhr.open("GET", "/" + data.url);
+    xhr.open("GET", "/vr/" + data.url);
     xhr.responseType = "document";
     xhr.send();  
   }
