@@ -1,4 +1,4 @@
-avocado.weinshel.net/vr {
+avocado.weinshel.net {
     proxy /http http://localhost:4333 {
         transparent
     }
