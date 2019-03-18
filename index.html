@@ -4,11 +4,14 @@
         <title>web explorer</title>
         <meta name="description" content="Build your own planetarium with A-frame">
         <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
-        <script src="https://unpkg.com/aframe-html-shader@0.2.0/dist/aframe-html-shader.min.js"></script>
         <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
         <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
-          <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
 
+        <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js"></script>
 
 
         <!-- Custom shaders for cool textures -->
@@ -21,6 +24,7 @@
 
 
         <script src="lib/html2canvas.min.js"></script>
+         <script src="lib/aframe-html-shader.min.js"></script>
 
 
         <!-- this includes our restart-button component from the restart-button
@@ -36,53 +40,86 @@
     <body>
         <a-scene>
             <a-assets>
+                <img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
+                <img id="next-thumb" crossorigin="anonymous" src="icons/next.png">
+                <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+                <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+                <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+                <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
+                <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+
+                <!-- Image link template to be reused. -->
+                <script id="link" type="text/html">
+                  <a-entity class="link"
+                    geometry="primitive: box; height: 1; width: 1; depth: 0.1"
+                    material="shader: flat; src: ${thumb}"
+                    event-set__1="_event: mousedown; scale: 1 1 1"
+                    event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+                    event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+                    event-set__4="_event: mouseleave; scale: 1 1 1"
+                    sound="on: click; src: #click-sound"></a-entity>
+                </script>
             </a-assets>
 
-
-          
-            <a-plane class="webpage" webpage="url: https://en.wikipedia.org/wiki/Special:Random" material="shader: html; target: #htmlElement; transparent: true; fps: 1" width=5 height=5 position="0 2 0"></a-plane>
-            <!-- <a-box material="shader: html; target: #htmlElement; transparent: true; fps: .2" width=20 height=20 position="0 0 0"></a-box> -->
-
-
-<!--             <a-mixin id="rotation" animation="property: rotation; loop: true; from:  0 0 0; to: 0 360 0; dur: 20000; easing: linear;"></a-mixin>
-            <a-mixin id="orbit" animation="property: rotation; loop: true; to: 0 360 0; dur: 40000; easing: linear; pauseEvents: pauseOrbit; resumeEvents: startOrbit"></a-mixin> -->
-
-            <!-- adding a cursor for look controls-->
-
-            <a-entity position="0 0 5">
-              <!-- <a-entity id="blockHand" hand-controls="right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity> -->
-
-              <a-entity id="blockHand" hand-controls="right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity>
-
-              <a-camera>
-                <a-cursor intersection-spawn="event: click; mixin: voxel" material="color: #8dd5e0;"></a-cursor>
-              </a-camera>
-            </a-entity>
-
-          
-<!--             <a-plane color="#CCC" height="20" width="20" webpage></a-plane> -->
-
-
-            <a-entity next-button position="4 2 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
-                text="zOffset: .005; wrapCount: 25; align: center; value:random">
-            </a-entity>
-            <a-entity click-link-button position="4 3 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
-                text="zOffset: .005; wrapCount: 25; align: center; value:link">
-            </a-entity>
-            <a-entity toggle-bg position="4 4 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
-                text="zOffset: .005; wrapCount: 25; align: center; value:toggle background">
-            </a-entity>
-
-
+            <!-- sky -->
+            <!-- <a-sky id="image-360" radius="10" src="#city"></a-sky> -->
             <a-sky color="#131e30"></a-sky>
             <a-entity star-system="count: 200; radius: 200; depth: 2; texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2Fstar.svg?1541105053938;"></a-entity>
+          
+            <a-box 
+                class="webpage" 
+                webpage="url: https://en.wikipedia.org/wiki/Special:Random" 
+                material="shader: html; target: #htmlElement; transparent: true; fps: 2; width: 900; height: 450;" 
+                width=6 height=3 depth=0.1 position="0 2 -5"
+            ></a-box>
+
+
+            <a-entity id="links" layout="type: line; margin: 1.5" position="2 2 -4">
+            
+                <a-entity 
+                    click-link-button
+                    template="src: #link" 
+                    data-src="#next" 
+                    data-thumb="#next-thumb">
+                </a-entity>
+                <a-entity 
+                    next-button
+                    template="src: #link"
+                    data-src="#city"
+                    data-thumb="#city-thumb">
+                </a-entity>
+                <a-entity
+                    toggle-bg
+                    template="src: #link" 
+                    data-src="#sechelt"
+                    data-thumb="#sechelt-thumb">
+                </a-entity>
+            </a-entity>
+
+            <!-- CURSOR-->
+            <a-camera>
+
+                <a-entity id="blockHand" hand-controls="right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity>
+
+<!--                 <a-cursor id="cursor" intersection-spawn="event: click;  material="color: #8dd5e0;"></a-cursor>
+ -->
+                <a-cursor id="cursor">
+                  <a-animation begin="click" easing="ease-in" attribute="scale"
+                  fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150" mixin: voxel"></a-animation>
+                  <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                  from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+              </a-cursor>
+
+            </a-camera>
+
+            
 
             <!-- ground -->
             <a-cylinder id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" radius="32" height="0.1"></a-cylinder>
 
           
             <!-- log panel -->
-            <a-entity position="4 1 0">
+            <a-entity position="4 1 -5">
               <a-entity log geometry="primitive: plane; width: 2; height: 1" material="color: #111" text="color: lightgreen" position="0 0 0"></a-entity>
             </a-entity>
 
@@ -107,7 +144,7 @@
       
         <div style="width: 900px; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden;">
             <div id="htmlElement" style="background-color: #9cbaa2" >
-              </div>
+            </div>
         </div>
 
 

@@ -19,14 +19,21 @@ AFRAME.registerComponent('webpage', {
     let el = this.el;
     AFRAME.log('updating url to '+ data.url)
 
+    // remove old elements
+    // while (el.firstChild) {
+    //   el.removeChild(el.firstChild);
+    // }
+    // let load = document.createTextNode('Loading…')
+    // el.appendChild(load)
+
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
         const el = document.getElementById('htmlElement')
-
         // remove old elements
         while (el.firstChild) {
           el.removeChild(el.firstChild);
         }
+
         const head = this.responseXML.head
         const content = this.responseXML.body
         if (data.showBgd) {
