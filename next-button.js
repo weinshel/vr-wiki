@@ -8,7 +8,7 @@ AFRAME.registerComponent('next-button', {
     el.addEventListener('click', function () {
       AFRAME.log("next button was clicked!");
       sceneEl.querySelectorAll('.webpage').forEach(el => {
-        el.setAttribute('webpage', 'url', 'https://www.google.com')
+        el.setAttribute('webpage', 'url', 'https://en.wikipedia.org/wiki/Special:Random')
       })
     });
   } 

@@ -27,6 +27,7 @@
         file -->
         <script src="next-button.js"></script>
         <script src="toggle-bg.js"></script>
+        <script src="click-link-button.js"></script>
         <script src="webpage.js"></script>
 
 
@@ -39,7 +40,7 @@
 
 
           
-            <a-plane class="webpage" webpage="url: https://en.wikipedia.org/" material="shader: html; target: #htmlElement; transparent: true; fps: 1" width=5 height=5 position="0 2 0"></a-plane>
+            <a-plane class="webpage" webpage="url: https://en.wikipedia.org/wiki/Special:Random" material="shader: html; target: #htmlElement; transparent: true; fps: 1" width=5 height=5 position="0 2 0"></a-plane>
             <!-- <a-box material="shader: html; target: #htmlElement; transparent: true; fps: .2" width=20 height=20 position="0 0 0"></a-box> -->
 
 
@@ -63,10 +64,12 @@
 
 
             <a-entity next-button position="4 2 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
-                text="zOffset: .005; wrapCount: 25; align: center; value: \n next 
-              \n ">
+                text="zOffset: .005; wrapCount: 25; align: center; value:random">
             </a-entity>
-            <a-entity toggle-bg position="4 3 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
+            <a-entity click-link-button position="4 3 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
+                text="zOffset: .005; wrapCount: 25; align: center; value:link">
+            </a-entity>
+            <a-entity toggle-bg position="4 4 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
                 text="zOffset: .005; wrapCount: 25; align: center; value: \n toggle background 
               \n ">
             </a-entity>

@@ -3,7 +3,7 @@ AFRAME.registerComponent('webpage', {
     // width: {type: 'number', default: 20},
     // height: {type: 'number', default: 20},
     // color: {type: 'color', default: '#AAA'},
-    url: {type: 'string', default: 'http://example.com'},
+    url: {type: 'string', default: 'https://en.wikipedia.org/wiki/Special:Random'},
     showBgd: {type: 'boolean', default: false}
   },
 
@@ -39,3 +39,5 @@ AFRAME.registerComponent('webpage', {
     xhr.send();  
   }
 });
+
+
