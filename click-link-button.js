@@ -19,7 +19,7 @@ function getRandomLink () {
   const doc = document.getElementById('htmlElement')
   const links = doc.getElementsByTagName('a')
   const i = getRandomInt(0, links.length)
-  const l = links[4].href
+  const l = 'http' + links[i].href.split('http')[2]
   console.log(l)
   AFRAME.log(l)
   return l

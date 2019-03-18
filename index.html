@@ -52,11 +52,11 @@
             <a-entity position="0 0 5">
               <!-- <a-entity id="blockHand" hand-controls="right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity> -->
 
+              <a-entity id="blockHand" hand-controls="right" laser-controls intersection-spawn="event: click; mixin: voxel"></a-entity>
+
               <a-camera>
                 <a-cursor intersection-spawn="event: click; mixin: voxel" material="color: #8dd5e0;"></a-cursor>
               </a-camera>
-
-
             </a-entity>
 
           
@@ -70,8 +70,7 @@
                 text="zOffset: .005; wrapCount: 25; align: center; value:link">
             </a-entity>
             <a-entity toggle-bg position="4 4 0" geometry="primitive: plane; width: 1; height: 1" material="color: #4628EB;"
-                text="zOffset: .005; wrapCount: 25; align: center; value: \n toggle background 
-              \n ">
+                text="zOffset: .005; wrapCount: 25; align: center; value:toggle background">
             </a-entity>
 
 
@@ -81,10 +80,11 @@
             <!-- ground -->
             <a-cylinder id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" radius="32" height="0.1"></a-cylinder>
 
-          <a-entity position="4 1 0">
-            <a-entity log geometry="primitive: plane; width: 2; height: 1" material="color: #111" text="color: lightgreen" position="0 0 0"></a-entity>
-
-          </a-entity>
+          
+            <!-- log panel -->
+            <a-entity position="4 1 0">
+              <a-entity log geometry="primitive: plane; width: 2; height: 1" material="color: #111" text="color: lightgreen" position="0 0 0"></a-entity>
+            </a-entity>
 
             <!-- some planets made with shaders, a gas giant and a metallic
             planet-->
@@ -103,28 +103,10 @@
                 <a-sphere id="terra" position="0 0 21" radius="1.75" terra-shader mixin="rotation"></a-sphere>
             </a-entity> -->
 
-            <!--here is a rocky planet with a 2 moons -->
-<!--             <a-entity id="orbit-rocky" mixin="orbit" animation="dur: 30000;" class="orbits">
-                <a-entity id="rocky-and-moon" position="0 0 10.5">
-                    <a-entity id="rocky-container">
-                        <a-sphere position="0 0 0" radius=".75" id="rocky-planet" mixin="rotation"
-                            gradient-planet-shader="texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2FGeneric_Celestia_asteroid_texture.jpg?1541189998715"></a-sphere>
-                        <a-entity id="moon-container" mixin="orbit">
-                            <a-sphere position="-1 0 0 0" radius=".1" id="moon1" gradient-planet-shader="texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2FGeneric_Celestia_asteroid_texture.jpg?1541189998715"></a-sphere>
-                        </a-entity>
-                        <a-entity id="moon2-container" mixin="orbit" animation="dur: 30000;" class="orbits">
-                            <a-sphere position="-2 0 0 0" radius=".2" id="moon2" gradient-planet-shader="texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2FGeneric_Celestia_asteroid_texture.jpg?1541189998715"></a-sphere>
-                        </a-entity>
-                    </a-entity>
-                </a-entity>
-            </a-entity>
- -->
         </a-scene>
       
         <div style="width: 900px; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden;">
             <div id="htmlElement" style="background-color: #9cbaa2" >
-                <!-- style="background: linear-gradient(red, yellow, green); width: 500px; height: 200px; font-size: 64px; padding-top: 15px; color: #222; font-weight: 600; display: flex; align-items: center; text-align: center; border-radius: 200px"> -->
-            <!-- <p style="border: 1px #FFF">ARE YOU HUNGRY?</p> -->
               </div>
         </div>
 
