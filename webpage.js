@@ -16,19 +16,21 @@ AFRAME.registerComponent('webpage', {
 
   update: function (oldData) {
     let data = this.data;
-    let el = this.el;
+    // let el = this.el;
     AFRAME.log('updating url to '+ data.url)
+    // const loader = document.getElementById('loader')
+    // loader.style.display = 'inline'
 
+    let el = document.getElementById('htmlElement')
     // remove old elements
-    // while (el.firstChild) {
-    //   el.removeChild(el.firstChild);
-    // }
-    // let load = document.createTextNode('Loading…')
-    // el.appendChild(load)
+    while (el.firstChild) {
+      el.removeChild(el.firstChild);
+    }
 
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
-        const el = document.getElementById('htmlElement')
+        let el = document.getElementById('htmlElement')
+        
         // remove old elements
         while (el.firstChild) {
           el.removeChild(el.firstChild);
@@ -40,10 +42,30 @@ AFRAME.registerComponent('webpage', {
           el.appendChild(head)
         }
         el.appendChild(content)
+        el.style.display = 'inline'
     }
     xhr.open("GET", "/" + data.url);
     xhr.responseType = "document";
     xhr.send();  
+
+    // fetch("/" + data.url)
+    //   .then((response) => {
+    //     console.log('fetching')
+    //     const el = document.getElementById('htmlElement')
+        
+    //     // remove old elements
+    //     while (el.firstChild) {
+    //       el.removeChild(el.firstChild);
+    //     }
+
+    //     const head = response.headers
+    //     const content = response.body
+    //     if (data.showBgd) {
+    //       el.appendChild(head)
+    //     }
+    //     el.appendChild(content)
+    //     el.style.display = 'inline'
+    //   })
   }
 });
 

@@ -18,7 +18,7 @@ AFRAME.registerComponent('click-link-button', {
 function getRandomLink () {
   const doc = document.getElementById('htmlElement')
   let links = Array.from(doc.getElementsByTagName('a'))
-  links = links.filter(el => el.href && el.href.includes('https://en.wikipedia.org'))
+  links = links.filter(el => el.href && el.href.includes('https://en.wikipedia.org') && !el.href.includes('CreateAccount'))
   const i = getRandomInt(0, links.length)
   const l = 'http' + links[i].href.split('http')[2]
   console.log(l)

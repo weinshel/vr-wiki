@@ -3,6 +3,9 @@
     <head>
         <title>web explorer</title>
         <meta name="description" content="Build your own planetarium with A-frame">
+        
+        <style src="loading.css"></style>
+
         <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
         <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
@@ -41,9 +44,9 @@
         <a-scene>
             <a-assets>
                 <img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
-                <img id="next-thumb" crossorigin="anonymous" src="icons/next.png">
-                <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-                <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+                <img id="link-thumb" crossorigin="anonymous" src="icons/next.png">
+                <img id="rainbow-thumb" crossorigin="anonymous" src="icons/rainbow.png">
+                <img id="reset-thumb" crossorigin="anonymous" src="icons/reset.png">
                 <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
                 <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
                 <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
@@ -68,8 +71,8 @@
           
             <a-box 
                 class="webpage" 
-                webpage="url: https://en.wikipedia.org/wiki/Special:Random" 
-                material="shader: html; target: #htmlElement; transparent: true; fps: 2; width: 900; height: 450;" 
+                webpage="url: https://en.wikipedia.org/wiki/Human" 
+                material="shader: html; target: #htmlContainer; transparent: true; fps: 2; width: 900; height: 450;" 
                 width=6 height=3 depth=0.1 position="0 2 -5"
             ></a-box>
 
@@ -80,19 +83,19 @@
                     click-link-button
                     template="src: #link" 
                     data-src="#next" 
-                    data-thumb="#next-thumb">
+                    data-thumb="#link-thumb">
                 </a-entity>
                 <a-entity 
-                    next-button
+                    reset-button
                     template="src: #link"
                     data-src="#city"
-                    data-thumb="#city-thumb">
+                    data-thumb="#reset-thumb">
                 </a-entity>
                 <a-entity
                     toggle-bg
                     template="src: #link" 
                     data-src="#sechelt"
-                    data-thumb="#sechelt-thumb">
+                    data-thumb="#rainbow-thumb">
                 </a-entity>
             </a-entity>
 
@@ -104,8 +107,13 @@
 <!--                 <a-cursor id="cursor" intersection-spawn="event: click;  material="color: #8dd5e0;"></a-cursor>
  -->
                 <a-cursor id="cursor">
-                  <a-animation begin="click" easing="ease-in" attribute="scale"
-                  fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150" mixin: voxel"></a-animation>
+                  <a-animation 
+                      begin="click" 
+                      easing="ease-in" attribute="scale"
+                      fill="backwards" 
+                      from="0.1 0.1 0.1" 
+                      to="1 1 1" dur="150" mixin: "voxel"
+                  ></a-animation>
                   <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
                   from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
               </a-cursor>
@@ -142,9 +150,11 @@
 
         </a-scene>
       
-        <div style="width: 900px; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden;">
-            <div id="htmlElement" style="background-color: #9cbaa2" >
+        <div id="htmlContainer" style="width: 900px; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden; background-color: #fff">
+            <div id="htmlElement">
+            <!-- <img id="loader" src='icons/loading.gif' width=100 height=100 style="background-color: #fff; position: absolute"></img> -->
             </div>
+            <h1 style="position: absolute; z-index: -2; font-family: monospace; padding: 20px">Loading...</h1>
         </div>
 
 
