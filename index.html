@@ -41,7 +41,7 @@
     </head>
 
     <body>
-        <a-scene>
+        <a-scene light="defaultLightsEnabled: false">
             <a-assets>
                 <img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
                 <img id="link-thumb" crossorigin="anonymous" src="icons/next.png">
@@ -54,7 +54,7 @@
                 <!-- Image link template to be reused. -->
                 <script id="link" type="text/html">
                   <a-entity class="link"
-                    geometry="primitive: box; height: 1; width: 1; depth: 0.1"
+                    geometry="primitive: box; height: 1; width: 1; depth: 1"
                     material="shader: flat; src: ${thumb}"
                     event-set__1="_event: mousedown; scale: 1 1 1"
                     event-set__2="_event: mouseup; scale: 1.2 1.2 1"
@@ -65,19 +65,24 @@
             </a-assets>
 
             <!-- sky -->
-            <!-- <a-sky id="image-360" radius="10" src="#city"></a-sky> -->
-            <a-sky color="#131e30"></a-sky>
-            <a-entity star-system="count: 200; radius: 200; depth: 2; texture: https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2Fstar.svg?1541105053938;"></a-entity>
+            <!-- IMAGE CREDIT https://www.flickr.com/photos/sitoo/46891684951/in/photolist-2eKKJQ9-2d3Wn9Z-2erE9fK-4FG8uB-MSw4jE-2exrsgA-HAsxmt -->
+            <a-sky src="icons/bgd.jpg"></a-sky>
+            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 2; castShadow:true;" position="-5 1 1"></a-entity>
           
+            <a-box
+              width=4.2 height=2.2 depth=0.2 position="0 1.1 -4.1"
+              color="#4c3d2c"
+            ></a-box>
             <a-box 
                 class="webpage" 
                 webpage="url: https://en.wikipedia.org/wiki/Human" 
                 material="shader: html; target: #htmlContainer; transparent: true; fps: 2; width: 900; height: 450;" 
-                width=6 height=3 depth=0.1 position="0 2 -5"
+                width=4 height=2 depth=0.1 position="0 1.1 -4"
             ></a-box>
 
 
-            <a-entity id="links" layout="type: line; margin: 1.5" position="2 2 -4">
+            <a-entity id="links" layout="type: line; margin: 1.5" position="7 0.5 -3" rotation="0 270 0">
             
                 <a-entity 
                     click-link-button
@@ -123,30 +128,14 @@
             
 
             <!-- ground -->
-            <a-cylinder id="ground" src="https://cdn.aframe.io/a-painter/images/floor.jpg" radius="32" height="0.1"></a-cylinder>
+            <!-- CREDIT https://seamless-pixels.blogspot.com/p/free-seamless-ground-textures.html -->
+            <a-cylinder id="ground" src="icons/floor.jpg" radius="32" height="0.1" roughness="20" repeat="50 50"></a-cylinder>
 
           
             <!-- log panel -->
-            <a-entity position="4 1 -5">
-              <a-entity log geometry="primitive: plane; width: 2; height: 1" material="color: #111" text="color: lightgreen" position="0 0 0"></a-entity>
-            </a-entity>
-
-            <!-- some planets made with shaders, a gas giant and a metallic
-            planet-->
-            <!-- also give the orbits the same class, orbits, so we can control
-            them with javascipt -->
-<!--             <a-entity id="orbit-gas-giant" mixin="orbit" animation="dur: 90000;" class="orbits">
-                <a-sphere id="gas-giant" position="0 0 30" radius="2.5" mixin="rotation" gas-giant-shader></a-sphere>
-            </a-entity>
-
-            <a-entity id="orbit-metallic" mixin="orbit" class="orbits">
-                <a-sphere id="metallic-planet" position="0 0 15" radius="1" metallic-planet-shader="volcanism: 0;"
-                    mixin="rotation"></a-sphere>
-            </a-entity>
-
-            <a-entity id="orbit-terra" mixin="orbit" class="orbits">
-                <a-sphere id="terra" position="0 0 21" radius="1.75" terra-shader mixin="rotation"></a-sphere>
-            </a-entity> -->
+            <!-- <a-entity position="4 1 -5"> -->
+            <!--   <a-entity log geometry="primitive: plane; width: 2; height: 1" material="color: #111" text="color: lightgreen" position="0 0 0"></a-entity> -->
+            <!-- </a-entity> -->
 
         </a-scene>
       
@@ -157,11 +146,6 @@
             <h1 style="position: absolute; z-index: -2; font-family: monospace; padding: 20px">Loading...</h1>
         </div>
 
-
-        <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-        <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-        <script src="https://button.glitch.me/button.js"></script>
     </body>
 
 </html>

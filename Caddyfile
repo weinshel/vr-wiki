@@ -1,5 +1,5 @@
-cucumber.weinshel.net {
-    proxy /http http://localhost:4333 {
+vr.weinshel.net {
+    proxy /http http://192.168.0.111:4333 {
         transparent
     }
 }

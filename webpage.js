@@ -29,7 +29,7 @@ AFRAME.registerComponent('webpage', {
 
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
-        let el = document.getElementById('htmlElement')
+        // let el = document.getElementById('htmlElement')
         
         // remove old elements
         while (el.firstChild) {
